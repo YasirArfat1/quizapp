@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizApp</title>
+
+    <link rel="stylesheet" href="./Assets/css/bootstrap.min.css">
+
+
+    <script src="./Assets/js/bootstrap.bundle.min.js"></script>
+
+   
+</head>
+<body>
+    <div class="container-fluid my-5">
+        <div class="row">
+            <div class="col-8 mx-auto shadow p-5 rounded">
+                <h1 class="text-center">JavaScript Quiz App</h1>
+
+                <div id="data">
+                    
+                </div>
+
+                <div class="mt-2">
+                    <button id="next" class="btn btn-info me-5">Next</button>
+                    <button id="Previous" class="btn btn-warning">Previous</button>
+                    <button id="submit" class="btn btn-success">Submit Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var content_area = document.querySelector('#data');
+        var btn_next  = document.querySelector('#next');
+        var btn_prev  = document.querySelector('#Previous');
+        var btn_submit  = document.querySelector('#submit');
+        btn_submit.style.display = "none";
+        // console.log(btn_next);
+        // console.log(btn_prev);
+
+       
+        
+
+        var click = 0;
+        fetch('./Assets/js/questions.json')
+        .then(res => res.json())
+        .then(data =>
+        {
+
+       
+
+            console.log(data);
+
+            var mydata = '';
+
+            for(var i of data)
+            {
+                mydata += `
+                <div class="question q${i.id} mt-4">
+                        <p><b>Question No ${i.id} </b>${i.question} </p>
+                        <input type="radio" value="${i.option1}" name="question${i.id}"> ${i.option1}
+                        <br>
+                        <input type="radio" value="${i.option3}" name="question${i.id}"> ${i.option2}
+                        <br>
+                        <input type="radio" value="${i.option3}" name="question${i.id}"> ${i.option3}
+                        <br>
+                        <input type="radio" value="${i.option4}" name="question${i.id}"> ${i.option4}
+                </div>
+                `
+            }
+            content_area.innerHTML = mydata;
+
+            var questions = document.querySelectorAll('.question');
+        
+            // console.log(questions);
+            
+           
+           
+            for(var i=0 ; i<5 ; i++)
+            {
+                if(i==0)
+                {
+                    questions[i].style.display = 'block';
+                    btn_prev.style.display = "none";
+                }
+                else
+                {
+                    questions[i].style.display = 'none';
+                }
+            }
+
+            
+
+           
+
+
+            btn_next.addEventListener('click',function(){
+                // alert(click)
+                btn_submit.style.display = "none";
+                for(var i=0 ; i<5 ; i++)
+                {
+                    questions[i].style.display = 'none';
+                    
+                }
+                if(click==0)
+                {
+                    // alert(1);
+                    questions[1].style.display = 'block';
+                    click++;
+                    btn_prev.style.display = "inline-block";
+                    
+                }
+                else if(click==1)
+                {
+                    questions[2].style.display = 'block';
+                    click++;
+                }
+                else if(click==2)
+                {
+                    questions[3].style.display = 'block';
+                    click++;
+                }
+                else if(click==3)
+                {
+                    questions[4].style.display = 'block';
+                    btn_next.style.display = 'none';
+                    btn_submit.style.display = "inline-block";
+                }
+                else if(click==-1)
+                {
+                    
+                    questions[0].style.display = 'block';
+                    click++;
+                }
+            })
+
+            btn_prev.addEventListener("click",function()
+            {
+                btn_submit.style.display = "none";
+                for(var i=0 ; i<5 ; i++)
+                {
+                    questions[i].style.display = 'none';
+                    
+                }
+                if(click==3)
+                {
+                    questions[3].style.display = 'block';
+                    click--;
+                    btn_next.style.display = 'inline-block';
+                }
+                else if(click==2)
+                {
+                    questions[2].style.display = 'block';
+                    click--;
+                }
+                else if(click==1)
+                {
+                    questions[1].style.display = 'block';
+                    click--;
+                }
+                else if(click==0)
+                {
+                    questions[0].style.display = 'block';
+                    click--;
+                    btn_prev.style.display = 'none';
+                }
+            })
+
+
+            btn_submit.addEventListener("click",function(){
+                var ans1 = document.getElementsByName("question1");
+                for(var i=0 ; i<=3 ; i++)
+                {
+                    if(ans1[i].checked==true)
+                    {
+                        console.log(ans1[i])
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+            })
+
+        });
+
+
+       
+
+        
+
+        
+        
+    </script>
+</body>
+</html>

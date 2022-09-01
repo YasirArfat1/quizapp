@@ -1,0 +1,46 @@
+[
+    {
+        "id" : 1,
+        "question" : "What is full form of HTML",
+        "option1": "Hype text langauge",
+        "option2": "HyperText Markup Language",
+        "option3" : "Markup Language",
+        "option4": "none of these"
+    },
+
+    {
+        "id" : 2,
+        "question" : "What is full form of CSS",
+        "option1": "Cascading style",
+        "option2": "Cascading Style Sheet",
+        "option3" : "Sheet",
+        "option4": "All of these"
+    },
+
+    {
+        "id" : 3,
+        "question" : "HTML5 is Decleared with",
+        "option1": "< html5 >",
+        "option2": "< Doctype Html >",
+        "option3" : "< html> ",
+        "option4": "none"
+    },
+
+    {
+        "id" : 4,
+        "question" : "CSS types are",
+        "option1": "Internal",
+        "option2": "inline",
+        "option3" : "External",
+        "option4": "All of these"
+    },
+
+    {
+        "id" : 5,
+        "question" : "JavaScript is writen in ...... tag",
+        "option1": "< script >",
+        "option2": "< js >",
+        "option3" : "< link >",
+        "option4": "All of these"
+    }
+]
